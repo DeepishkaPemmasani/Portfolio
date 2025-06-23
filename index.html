@@ -3,145 +3,734 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepishka Pemmasani - Portfolio</title>
+    <title>Deepishka Pemmasani - Health Informatics & Pharmacovigilance Expert</title>
+    <meta name="keywords" content="FHIR developer, health informatics analyst, clinical data scientist, pharmacovigilance, biomedical data, HL7, machine learning">
     <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.10/babel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .typing-animation {
+            border-right: 2px solid #667eea;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #667eea; }
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div id="root"></div>
     <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const Navigation = () => {
+            const [activeSection, setActiveSection] = useState('home');
+            
+            const scrollToSection = (sectionId) => {
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                setActiveSection(sectionId);
+            };
+
+            return (
+                <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between items-center py-4">
+                            <div className="text-xl font-bold text-gray-800">DP</div>
+                            <div className="hidden md:flex space-x-8">
+                                {['home', 'about', 'skills', 'experience', 'projects', 'publications', 'conferences', 'contact'].map((item) => (
+                                    <button
+                                        key={item}
+                                        onClick={() => scrollToSection(item)}
+                                        className={`capitalize font-medium transition-colors duration-200 ${
+                                            activeSection === item ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'
+                                        }`}
+                                    >
+                                        {item}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const Hero = () => {
+            const [currentTitle, setCurrentTitle] = useState(0);
+            const titles = [
+                "Health Informatics Specialist",
+                "Pharmacovigilance Expert", 
+                "Clinical Data Scientist",
+                "FHIR Developer"
+            ];
+
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    setCurrentTitle((prev) => (prev + 1) % titles.length);
+                }, 3000);
+                return () => clearInterval(interval);
+            }, []);
+
+            return (
+                <section id="home" className="gradient-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+                        <div className="mb-8">
+                            <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-4xl font-bold">
+                                DP
+                            </div>
+                        </div>
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 fade-in">
+                            Deepishka Pemmasani
+                        </h1>
+                        <div className="text-xl md:text-2xl mb-8 h-8">
+                            <span className="typing-animation">{titles[currentTitle]}</span>
+                        </div>
+                        <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-90">
+                            Transforming healthcare through interoperable systems, data-driven insights, and clinical expertise. Master’s in Health Informatics (IU, 2025) and PharmD with 4+ years in pharmacovigilance.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button 
+                                onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
+                                className="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200"
+                            >
+                                View My Work
+                            </button>
+                            <a 
+                                href="/DeepishkaPemmasani_Resume.pdf" 
+                                download 
+                                className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors duration-200"
+                            >
+                                Download Resume
+                            </a>
+                        </div>
+                        <div className="flex justify-center space-x-6 mt-12">
+                            <a href="mailto:deepupemmasani@gmail.com" className="text-white/80 hover:text-white transition-colors">
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                            </a>
+                            <a href="https://linkedin.com/in/deepishka-pemmasani" target="_blank" className="text-white/80 hover:text-white transition-colors">
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd"/>
+                                </svg>
+                            </a>
+                            <a href="https://github.com/DeepishkaPemmasani" target="_blank" className="text-white/80 hover:text-white transition-colors">
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const About = () => {
+            const stats = [
+                { number: "4+", label: "Years in Pharmacovigilance" },
+                { number: "200+", label: "Adverse Event Reports" },
+                { number: "8+", label: "Publications" },
+                { number: "5", label: "Conferences" }
+            ];
+
+            return (
+                <section id="about" className="py-20 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4 fade-in">About Me</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto"></div>
+                        </div>
+                        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                            <div>
+                                <h3 className="text-2xl font-semibold mb-6 text-gray-900">
+                                    Bridging Clinical Expertise & Data Science
+                                </h3>
+                                <p className="text-lg text-gray-600 mb-6">
+                                    I am a Health Informatics graduate student (Indiana University, expected 2025) and PharmD with over 4 years of experience in pharmacovigilance and clinical data management. My expertise lies in healthcare interoperability (HL7, FHIR, C-CDA), advanced analytics (Python, R, SAS), and EHR systems (Cerner, Epic, OpenMRS).
+                                </p>
+                                <p className="text-lg text-gray-600 mb-6">
+                                    My work focuses on transforming healthcare through interoperable systems, machine learning, and evidence-based research, with a passion for improving patient outcomes and health equity.
+                                </p>
+                                <div className="space-y-4">
+                                    <div className="flex items-center">
+                                        <div className="w-3 h-3 bg-purple-600 rounded-full mr-3"></div>
+                                        <span className="text-gray-700">Healthcare Interoperability (HL7, FHIR)</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="w-3 h-3 bg-purple-600 rounded-full mr-3"></div>
+                                        <span className="text-gray-700">Machine Learning & Reinforcement Learning</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="w-3 h-3 bg-purple-600 rounded-full mr-3"></div>
+                                        <span className="text-gray-700">Pharmacovigilance & Regulatory Compliance</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="w-3 h-3 bg-purple-600 rounded-full mr-3"></div>
+                                        <span className="text-gray-700">Clinical Data Analysis & Visualization</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
+                                <h4 className="text-xl font-semibold mb-6 text-gray-900">Key Achievements</h4>
+                                <div className="grid grid-cols-2 gap-6">
+                                    {stats.map((stat, index) => (
+                                        <div key={index} className="text-center">
+                                            <div className="text-3xl font-bold text-purple-600 mb-2">{stat.number}</div>
+                                            <div className="text-gray-600 text-sm">{stat.label}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Skills = () => {
+            return (
+                <section id="skills" className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4 fade-in">Technical Skills</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto"></div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div className="bg-gray-50 p-6 rounded-2xl card-hover">
+                                <h3 className="text-xl font-semibold mb-4">Healthcare Standards</h3>
+                                <ul className="list-disc ml-6 text-gray-600 space-y-2">
+                                    <li>HL7, FHIR, C-CDA, DICOM</li>
+                                    <li>ICD-10, SNOMED CT, LOINC</li>
+                                    <li>SmileCDR, InterOpstation</li>
+                                </ul>
+                            </div>
+                            <div className="bg-gray-50 p-6 rounded-2xl card-hover">
+                                <h3 className="text-xl font-semibold mb-4">Programming & Analytics</h3>
+                                <ul className="list-disc ml-6 text-gray-600 space-y-2">
+                                    <li>Python (NumPy, Pandas, scikit-learn)</li>
+                                    <li>R, SQL, SAS</li>
+                                    <li>Machine Learning, NLP, Reinforcement Learning</li>
+                                </ul>
+                            </div>
+                            <div className="bg-gray-50 p-6 rounded-2xl card-hover">
+                                <h3 className="text-xl font-semibold mb-4">EHR & Tools</h3>
+                                <ul className="list-disc ml-6 text-gray-600 space-y-2">
+                                    <li>Cerner, Epic, OpenMRS, REDCap</li>
+                                    <li>Tableau, PowerBI, JIRA, Confluence</li>
+                                    <li>ARISg7, SCEPTRE 2.6.21</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Experience = () => {
+            const experiences = [
+                {
+                    title: "Health Informatics Intern",
+                    company: "Michigan Health Information Network (MiHIN)",
+                    location: "Remote",
+                    period: "Aug 2024 - Present",
+                    description: "Spearheaded interoperability solutions for clinical data exchange.",
+                    achievements: [
+                        "Resolved complex interoperability issues in SmileCDR, HL7 v2, and CCD documents",
+                        "Developed automated test protocols for 26 CCDs with 100% accuracy",
+                        "Created data mapping documentation aligning HL7 v2 and FHIR standards",
+                        "Supported MITP validation for FHIR data integrity"
+                    ],
+                    technologies: ["FHIR", "HL7", "C-CDA", "SmileCDR", "Thunderclient", "JIRA"]
+                },
+                {
+                    title: "Research Assistant, Pediatric Nephrology",
+                    company: "Riley Children's Health",
+                    location: "Indianapolis, IN",
+                    period: "Jan 2023 - Present",
+                    description: "Managed clinical research for adolescent kidney transplant outcomes.",
+                    achievements: [
+                        "Led data collection for kidney transplant transition study using REDCap",
+                        "Coordinated Cerner-to-IROC data migration",
+                        "Implemented electronic consent procedures",
+                        "Developed electronic data transfer systems"
+                    ],
+                    technologies: ["REDCap", "Cerner", "IROC", "SQL", "Tableau"]
+                },
+                {
+                    title: "Graduate Research Assistant",
+                    company: "IU Purkayastha Lab for Health Innovation",
+                    location: "Indianapolis, IN",
+                    period: "Jan 2023 - Present",
+                    description: "Developed AI-driven solutions for personalized healthcare.",
+                    achievements: [
+                        "Built exercise recommendation system using reinforcement learning",
+                        "Analyzed MIDUS 3 data for cognitive functioning insights",
+                        "Contributed to LIFE Trial health disparity analyses"
+                    ],
+                    technologies: ["Python", "R", "TensorFlow", "scikit-learn", "SAS"]
+                },
+                {
+                    title: "Data Analyst",
+                    company: "IU School of Health and Human Sciences",
+                    location: "Indianapolis, IN",
+                    period: "2023 - 2024",
+                    description: "Conducted statistical analyses for health disparity research.",
+                    achievements: [
+                        "Analyzed MIDUS 3 data for cognitive health factors",
+                        "Supported LIFE Trial racial disparity analyses"
+                    ],
+                    technologies: ["Python", "R", "Statistical Modeling"]
+                },
+                {
+                    title: "Pharmacovigilance Operations Specialist",
+                    company: "IQVIA India Pvt Ltd",
+                    location: "Bangalore, India",
+                    period: "Feb 2019 - Jul 2023",
+                    description: "Ensured drug safety through adverse event processing.",
+                    achievements: [
+                        "Processed 200+ adverse event reports with 100% ICH/GCP compliance",
+                        "Streamlined reporting using MedDRA and WHO DRUG dictionaries",
+                        "Reduced query response time by 40%",
+                        "Achieved 100% regulatory compliance"
+                    ],
+                    technologies: ["MedDRA", "WHO DRUG", "ARISg7", "SCEPTRE 2.6.21"]
+                }
+            ];
+
+            return (
+                <section id="experience" className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4 fade-in">Professional Experience</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto"></div>
+                        </div>
+                        <div className="space-y-8">
+                            {experiences.map((exp, index) => (
+                                <div key={index} className="bg-gray-50 rounded-2xl p-8 card-hover">
+                                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
+                                        <div>
+                                            <h3 className="text-2xl font-semibold text-gray-900 mb-2">{exp.title}</h3>
+                                            <p className="text-xl text-purple-600 font-medium mb-1">{exp.company}</p>
+                                            <p className="text-gray-600">{exp.location}</p>
+                                        </div>
+                                        <div className="mt-4 lg:mt-0">
+                                            <span className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
+                                                {exp.period}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p className="text-gray-700 mb-6">{exp.description}</p>
+                                    <div className="mb-6">
+                                        <h4 className="font-semibold text-gray-900 mb-3">Key Achievements:</h4>
+                                        <ul className="space-y-2">
+                                            {exp.achievements.map((achievement, i) => (
+                                                <li key={i} className="flex items-start">
+                                                    <div className="w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                                    <span className="text-gray-700">{achievement}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900 mb-3">Technologies:</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {exp.technologies.map((tech, i) => (
+                                                <span key={i} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Projects = () => {
+            const projects = [
+                {
+                    title: "Healthcare Interoperability Platform",
+                    description: "Developed a robust system for bidirectional data exchange between OpenMRS and OpenELIS, adhering to HL7 and FHIR standards.",
+                    technologies: ["HL7", "FHIR", "C-CDA", "REST APIs", "XSLT", "OpenMRS", "OpenELIS"],
+                    achievements: [
+                        "Created well-formed C-CDA documents for patient data",
+                        "Implemented XSLT transformations for JSON outputs",
+                        "Demonstrated real-time data exchange via REST APIs",
+                        "Validated interoperability with clinical terminologies (LOINC, SNOMED CT)"
+                    ],
+                    github: "https://github.com/DeepishkaPemmasani/savvy-health-squad",
+                    status: "Production Ready",
+                    impact: "High"
+                },
+                {
+                    title: "Personalized Exercise Recommendation System",
+                    description: "Built an AI-powered system to recommend personalized exercises using contextual bandit algorithms and reinforcement learning.",
+                    technologies: ["Python", "TensorFlow", "scikit-learn", "Reinforcement Learning"],
+                    achievements: [
+                        "Developed contextual bandit algorithms with clinical guideline-based rewards",
+                        "Achieved 25% improvement in exercise adherence",
+                        "Published at HealthRecSys'24, Bari, Italy",
+                        "Integrated clinical trial data for evidence-based recommendations"
+                    ],
+                    github: "https://github.com/iupui-soic/exercise-behavior-change-app",
+                    status: "Published Research",
+                    impact: "High"
+                },
+                {
+                    title: "Cognitive Functioning Analysis (MIDUS 3)",
+                    description: "Analyzed MIDUS 3 biomarker data to study physical, psychological, and social impacts on cognitive health.",
+                    technologies: ["R", "SAS", "Statistical Modeling", "Path Analysis"],
+                    achievements: [
+                        "Analyzed 3,000+ participant dataset with advanced statistical models",
+                        "Applied health belief model and self-determination theory",
+                        "Identified key predictors of cognitive functioning",
+                        "Developed interactive dashboards for clinical insights"
+                    ],
+                    github: "https://github.com/DeepishkaPemmasani/MIDUS-Project",
+                    status: "Research Complete",
+                    impact: "Medium"
+                },
+                {
+                    title: "Datathon Network Impact Analysis",
+                    description: "Evaluated scholarly growth and diversity metrics for datathon participants compared to conference attendees.",
+                    technologies: ["R", "Network Analysis", "Data Visualization"],
+                    achievements: [
+                        "Compared metrics across gender, education, and income diversity",
+                        "Analyzed data from 2017-2019 datathons",
+                        "Created visualizations for stakeholder presentations",
+                        "Identified key diversity drivers in scholarly networks"
+                    ],
+                    github: "https://github.com/DeepishkaPemmasani/Datathon-Analysis",
+                    status: "Research Complete",
+                    impact: "Medium"
+                },
+                {
+                    title: "LIFE Trial on Cardiovascular Health",
+                    description: "Examined racial disparities in cardiovascular health improvements through lifestyle interventions.",
+                    technologies: ["SAS", "Longitudinal Data Analysis", "Survival Analysis"],
+                    achievements: [
+                        "Published findings in Innovation in Aging (2024)",
+                        "Analyzed longitudinal data for health disparity insights",
+                        "Developed survival models for outcome prediction",
+                        "Supported clinical policy recommendations"
+                    ],
+                    github: "https://github.com/DeepishkaPemmasani/LIFE-Trial",
+                    status: "Published Research",
+                    impact: "High"
+                },
+                {
+                    title: "Kidney Transplant Transition Study",
+                    description: "Managed data collection and analysis for adolescent kidney transplant readiness and adherence.",
+                    technologies: ["REDCap", "SQL", "Tableau", "Clinical Data Management"],
+                    achievements: [
+                        "Designed secure REDCap surveys with logic/validation rules",
+                        "Analyzed outcomes for 100+ adolescent patients",
+                        "Developed Tableau dashboards for clinical reporting",
+                        "Supported IROC quality improvement initiatives"
+                    ],
+                    github: "https://github.com/DeepishkaPemmasani/Kidney-Transplant-Study",
+                    status: "Ongoing",
+                    impact: "High"
+                }
+            ];
+
+            return (
+                <section id="projects" className="py-20 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4 fade-in">Research Projects</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto"></div>
+                            <p className="text-xl text-gray-600 mt-4">
+                                Innovative solutions in healthcare interoperability, AI, and clinical research
+                            </p>
+                        </div>
+                        <div className="grid lg:grid-cols-2 gap-8">
+                            {projects.map((project, index) => (
+                                <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                                    <div className="p-8">
+                                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
+                                            <div className="flex-1">
+                                                <div className="flex items-center mb-2">
+                                                    <h3 className="text-2xl font-bold text-gray-900">{project.title}</h3>
+                                                    <span className={`ml-4 px-3 py-1 rounded-full text-xs font-medium ${
+                                                        project.impact === 'High' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+                                                    }`}>
+                                                        {project.impact} Impact
+                                                    </span>
+                                                </div>
+                                                <p className="text-purple-600 font-medium mb-4">{project.status}</p>
+                                                <p className="text-gray-700 text-lg mb-6">{project.description}</p>
+                                            </div>
+                                        </div>
+                                        <div className="mb-6">
+                                            <h4 className="font-semibold text-gray-900 mb-3">Key Achievements:</h4>
+                                            <ul className="space-y-2">
+                                                {project.achievements.map((achievement, i) => (
+                                                    <li key={i} className="flex items-start">
+                                                        <div className="w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                                        <span className="text-gray-700">{achievement}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        <div className="mb-6">
+                                            <h4 className="font-semibold text-gray-900 mb-3">Technologies Used:</h4>
+                                            <div className="flex flex-wrap gap-2">
+                                                {project.technologies.map((tech, i) => (
+                                                    <span key={i} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className="flex space-x-4">
+                                            <a 
+                                                href={project.github} 
+                                                target="_blank" 
+                                                className="flex items-center bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+                                            >
+                                                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd"/>
+                                                </svg>
+                                                View Code
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Publications = () => {
+            const publications = [
+                {
+                    title: "The impact of the LIFE trial on cardiovascular health: racial disparities in lifestyle factor improvement",
+                    authors: "Nemati D, Pemmasani D, Lavangu V, Kaushal N",
+                    venue: "Innovation in Aging, 8(Supplement_1), 420-421",
+                    year: "2024",
+                    type: "Journal"
+                },
+                {
+                    title: "Incorporating exercise to buffer aversive health effects of loneliness among older adults in the LIFE trial",
+                    authors: "Kaushal N, Pemmasani D, Noriega de la Colina A, Nemati D",
+                    venue: "Innovation in Aging, 8, 361-361",
+                    year: "2024",
+                    type: "Journal"
+                },
+                {
+                    title: "Personalizing exercise recommendations with explanations using multi-armed contextual bandit and reinforcement learning",
+                    authors: "Naliyatthaliyazchayil P, Pemmasani D, Kaushal N, Nemati D, Purkayastha S",
+                    venue: "HealthRecSys'24, Bari, Italy",
+                    year: "2024",
+                    type: "Conference"
+                },
+                {
+                    title: "Assessment of drug related problems and clinical pharmacist interventions in a tertiary care teaching hospital",
+                    authors: "Pemmasani D, et al.",
+                    venue: "International Journal of Basic and Clinical Pharmacology",
+                    year: "2019",
+                    type: "Journal"
+                },
+                {
+                    title: "A rare case report of neurodegenerative disease: Duchenne muscular dystrophy",
+                    authors: "Pemmasani D, Munagala P, Gopineni D",
+                    venue: "Inventi Rapid, Pharmacy Practice, 2018(4):1-2",
+                    year: "2018",
+                    type: "Journal"
+                },
+                {
+                    title: "A retrospective study of assessment of pattern of adverse drug reactions in geriatric patients",
+                    authors: "Lakshmi RR, Prasad TSD, Pemmasani D, et al.",
+                    venue: "World Journal of Pharmaceutical Sciences",
+                    year: "2019",
+                    type: "Journal"
+                },
+                {
+                    title: "A retrospective study on pattern of adverse drug reactions to HAART therapy",
+                    authors: "Lakshmi RR, Prasad TSD, Pemmasani D, et al.",
+                    venue: "Perspectives in Clinical Research",
+                    year: "2019",
+                    type: "Journal"
+                },
+                {
+                    title: "Anti-retroviral therapy associated hepatotoxicity: case report and review",
+                    authors: "Pemmasani D, et al.",
+                    venue: "Indian Journal of Pharmacy",
+                    year: "2019",
+                    type: "Journal"
+                }
+            ];
+
+            return (
+                <section id="publications" className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4 fade-in">Publications</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto"></div>
+                        </div>
+                        <div className="space-y-6">
+                            {publications.map((pub, index) => (
+                                <div key={index} className="bg-gray-50 rounded-2xl p-6 card-hover">
+                                    <p className="text-gray-700">
+                                        {pub.authors}. ({pub.year}). <i>{pub.title}</i>. {pub.venue}. <span className="text-purple-600">[{pub.type}]</span>
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Conferences = () => {
+            const conferences = [
+                {
+                    title: "VIVE 2025 Conference",
+                    role: "Volunteer Team Member, InterOpNow! and AI Pavilion",
+                    details: "Managed visitor operations and assisted with FHIR and TEFCA sessions.",
+                    year: "Feb 2025"
+                },
+                {
+                    title: "ACM RecSys 2024: Health Recommender Systems Workshop",
+                    role: "Presenter",
+                    details: "Presented personalized exercise recommendation system using contextual bandits.",
+                    year: "2024"
+                },
+                {
+                    title: "IROC Fall 2024 Learning Session",
+                    role: "Active Participant",
+                    details: "Collaborated on pediatric kidney disease protocols and data standardization.",
+                    year: "2024"
+                }
+            ];
+
+            return (
+                <section id="conferences" className="py-20 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4 fade-in">Conferences</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto"></div>
+                        </div>
+                        <div className="space-y-6">
+                            {conferences.map((conf, index) => (
+                                <div key={index} className="bg-white rounded-2xl p-6 card-hover">
+                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{conf.title}</h3>
+                                    <p className="text-purple-600 font-medium">{conf.role} | {conf.year}</p>
+                                    <p className="text-gray-700 mt-2">{conf.details}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Contact = () => {
+            return (
+                <section id="contact" className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4 fade-in">Contact</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto"></div>
+                            <p className="text-xl text-gray-600 mt-4">
+                                Let’s collaborate on innovative healthcare solutions!
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div className="bg-gray-50 p-8 rounded-2xl card-hover">
+                                <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
+                                <ul className="space-y-4 text-gray-700">
+                                    <li className="flex items-center">
+                                        <svg className="w-6 h-6 mr-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                        </svg>
+                                        <a href="mailto:deepupemmasani@gmail.com" className="hover:text-purple-600">deepupemmasani@gmail.com</a>
+                                    </li>
+                                    <li className="flex items-center">
+                                        <svg className="w-6 h-6 mr-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                        </svg>
+                                        (317) 507-1142
+                                    </li>
+                                    <li className="flex items-center">
+                                        <svg className="w-6 h-6 mr-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd"/>
+                                        </svg>
+                                        <a href="https://linkedin.com/in/deepishka-pemmasani" target="_blank" className="hover:text-purple-600">linkedin.com/in/deepishka-pemmasani</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="bg-gray-50 p-8 rounded-2xl card-hover">
+                                <h3 className="text-xl font-semibold mb-4">Certifications & Memberships</h3>
+                                <ul className="list-disc ml-6 text-gray-700 space-y-2">
+                                    <li>Bio Medical Researcher, CTTI Program - Good Clinical Practice</li>
+                                    <li>Uppsala Monitoring Centre: Statistical Reasoning in Pharmacovigilance</li>
+                                    <li>Uppsala Monitoring Centre: Signal Detection and Causality Assessment</li>
+                                    <li>Member, HL7 International Working Group</li>
+                                    <li>Member, Improving Renal Outcomes Collaborative (IROC)</li>
+                                    <li>Student Volunteer Team Lead, AMIA CDSS Working Group</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
         const App = () => {
             return (
                 <div className="font-sans text-gray-800 bg-gray-100 min-h-screen">
-                    {/* Header */}
-                    <header className="bg-blue-800 text-white py-6 text-center">
-                        <h1 className="text-4xl font-bold">Deepishka Pemmasani</h1>
-                        <p className="text-xl mt-2">Health Informatics Specialist | Pharmacovigilance Expert</p>
-                        <div className="mt-4">
-                            <a href="mailto:deepupemmasani@gmail.com" className="text-blue-300 hover:underline mx-2">Email</a>
-                            <a href="https://linkedin.com/in/deepishka-pemmasani" target="_blank" className="text-blue-300 hover:underline mx-2">LinkedIn</a>
-                            <a href="https://github.com/DeepishkaPemmasani" target="_blank" className="text-blue-300 hover:underline mx-2">GitHub</a>
-                        </div>
-                    </header>
-
-                    {/* About Section */}
-                    <section className="max-w-4xl mx-auto py-8 px-4">
-                        <h2 className="text-3xl font-semibold mb-4">About Me</h2>
-                        <p className="text-lg">
-                            I am a passionate Health Informatics professional with a Master’s from Indiana University (expected 2025) and a PharmD from Sri Padmavati School of Pharmacy (2019). With expertise in healthcare interoperability (HL7, FHIR, C-CDA), data analysis (Python, R, SQL), and pharmacovigilance, I drive innovative solutions for clinical data management and patient care. My work spans EHR systems, machine learning, and clinical research, with a focus on improving health outcomes.
-                        </p>
-                    </section>
-
-                    {/* Skills Section */}
-                    <section className="max-w-4xl mx-auto py-8 px-4 bg-white">
-                        <h2 className="text-3xl font-semibold mb-4">Technical Skills</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <h3 className="text-xl font-medium">Healthcare Data Standards</h3>
-                                <p className="text-gray-600">HL7, FHIR, CCD, DICOM, ICD-10, SmileCDR, InterOpstation</p>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-medium">Programming & Data Analysis</h3>
-                                <p className="text-gray-600">R, Python (NumPy, Pandas, scikit-learn), SQL, SAS, Machine Learning</p>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-medium">EHR & Databases</h3>
-                                <p className="text-gray-600">Cerner, Epic, OpenMRS, IROC, REDCap, ARISg7, SCEPTRE 2.6.21</p>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-medium">Visualization & Tools</h3>
-                                <p className="text-gray-600">Tableau, PowerBI, JIRA, Confluence, MS Office, Thunderclient, Google Colab</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Experience Section */}
-                    <section className="max-w-4xl mx-auto py-8 px-4">
-                        <h2 className="text-3xl font-semibold mb-4">Professional Experience</h2>
-                        <div className="space-y-6">
-                            <div>
-                                <h3 className="text-xl font-medium">Health Informatics Intern, Michigan Health Information Network (MiHIN)</h3>
-                                <p className="text-gray-600">Remote | Aug 2024 - Present</p>
-                                <ul className="list-disc ml-6 text-gray-600">
-                                    <li>Resolved healthcare data interoperability issues using HL7, FHIR, and SmileCDR.</li>
-                                    <li>Developed automated test protocols for CCD validation.</li>
-                                    <li>Created data mapping documentation aligning HL7 v2 and FHIR standards.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-medium">Research Assistant, Riley Children's Health</h3>
-                                <p className="text-gray-600">Indianapolis, IN | Jan 2023 - Present</p>
-                                <ul className="list-disc ml-6 text-gray-600">
-                                    <li>Managed kidney transplant transition study with REDCap and Cerner.</li>
-                                    <li>Coordinated data migration to IROC database.</li>
-                                    <li>Implemented electronic consent procedures.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-medium">Pharmacovigilance Operations Specialist, IQVIA India</h3>
-                                <p className="text-gray-600">Bangalore, India | Feb 2019 - Jul 2023</p>
-                                <ul className="list-disc ml-6 text-gray-600">
-                                    <li>Processed adverse event data using MedDRA and WHO DRUG dictionaries.</li>
-                                    <li>Streamlined documentation, reducing reporting time.</li>
-                                    <li>Achieved 100% regulatory compliance.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Projects Section */}
-                    <section className="max-w-4xl mx-auto py-8 px-4 bg-white">
-                        <h2 className="text-3xl font-semibold mb-4">Research Projects</h2>
-                        <div className="space-y-6">
-                            <div>
-                                <h3 className="text-xl font-medium">Healthcare Interoperability (2024)</h3>
-                                <p className="text-gray-600">Technologies: HL7, FHIR, C-CDA, REST APIs</p>
-                                <p>Developed C-CDA documents and XSLT transformations for data exchange between OpenMRS and OpenELIS. Demonstrated bidirectional interoperability using REST APIs. <a href="https://github.com/your-username/savvy-health-squad" target="_blank" className="text-blue-600 hover:underline">GitHub Repository</a></p>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-medium">Personalizing Exercise Recommendations (2023-2024)</h3>
-                                <p className="text-gray-600">Technologies: Python, TensorFlow, scikit-learn</p>
-                                <p>Built a recommendation system using contextual bandit algorithms. Presented at HealthRecSys'24, Bari, Italy.</p>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-medium">Cognitive Functioning Analysis (2023-2024)</h3>
-                                <p className="text-gray-600">Technologies: R, SAS, Statistical Modeling</p>
-                                <p>Analyzed MIDUS 3 data to study physical, psychological, and social impacts on cognition.</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Education Section */}
-                    <section className="max-w-4xl mx-auto py-8 px-4">
-                        <h2 className="text-3xl font-semibold mb-4">Education</h2>
-                        <div className="space-y-6">
-                            <div>
-                                <h3 className="text-xl font-medium">Master of Science in Health Informatics</h3>
-                                <p className="text-gray-600">Indiana University, Indianapolis, IN | May 2025</p>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-medium">PharmD</h3>
-                                <p className="text-gray-600">Sri Padmavati School of Pharmacy, Tirupati, India | Feb 2019</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Contact Section */}
-                    <section className="max-w-4xl mx-auto py-8 px-4 bg-white">
-                        <h2 className="text-3xl font-semibold mb-4">Contact</h2>
-                        <p className="text-lg">Feel free to reach out for collaboration or opportunities:</p>
-                        <ul className="list-disc ml-6 text-gray-600">
-                            <li>Email: <a href="mailto:deepupemmasani@gmail.com" className="text-blue-600 hover:underline">deepupemmasani@gmail.com</a></li>
-                            <li>Phone: (317) 507-1142</li>
-                            <li>LinkedIn: <a href="https://linkedin.com/in/deepishka-pemmasani" target="_blank" className="text-blue-600 hover:underline">linkedin.com/in/deepishka-pemmasani</a></li>
-                        </ul>
-                    </section>
-
-                    {/* Footer */}
-                    <footer className="bg-blue-800 text-white text-center py-4">
-                        <p>&copy; 2025 Deepishka Pemmasani. All rights reserved.</p>
+                    <Navigation />
+                    <Hero />
+                    <About />
+                    <Skills />
+                    <Experience />
+                    <Projects />
+                    <Publications />
+                    <Conferences />
+                    <Contact />
+                    <footer className="bg-gray-900 text-white text-center py-6">
+                        <p>© 2025 Deepishka Pemmasani. All rights reserved.</p>
                     </footer>
                 </div>
             );

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepishka Pemmasani - Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.10/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const App = () => {
+            return (
+                <div className="font-sans text-gray-800 bg-gray-100 min-h-screen">
+                    {/* Header */}
+                    <header className="bg-blue-800 text-white py-6 text-center">
+                        <h1 className="text-4xl font-bold">Deepishka Pemmasani</h1>
+                        <p className="text-xl mt-2">Health Informatics Specialist | Pharmacovigilance Expert</p>
+                        <div className="mt-4">
+                            <a href="mailto:deepupemmasani@gmail.com" className="text-blue-300 hover:underline mx-2">Email</a>
+                            <a href="https://linkedin.com/in/deepishka-pemmasani" target="_blank" className="text-blue-300 hover:underline mx-2">LinkedIn</a>
+                            <a href="https://github.com/DeepishkaPemmasani" target="_blank" className="text-blue-300 hover:underline mx-2">GitHub</a>
+                        </div>
+                    </header>
+
+                    {/* About Section */}
+                    <section className="max-w-4xl mx-auto py-8 px-4">
+                        <h2 className="text-3xl font-semibold mb-4">About Me</h2>
+                        <p className="text-lg">
+                            I am a passionate Health Informatics professional with a Master’s from Indiana University (expected 2025) and a PharmD from Sri Padmavati School of Pharmacy (2019). With expertise in healthcare interoperability (HL7, FHIR, C-CDA), data analysis (Python, R, SQL), and pharmacovigilance, I drive innovative solutions for clinical data management and patient care. My work spans EHR systems, machine learning, and clinical research, with a focus on improving health outcomes.
+                        </p>
+                    </section>
+
+                    {/* Skills Section */}
+                    <section className="max-w-4xl mx-auto py-8 px-4 bg-white">
+                        <h2 className="text-3xl font-semibold mb-4">Technical Skills</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h3 className="text-xl font-medium">Healthcare Data Standards</h3>
+                                <p className="text-gray-600">HL7, FHIR, CCD, DICOM, ICD-10, SmileCDR, InterOpstation</p>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-medium">Programming & Data Analysis</h3>
+                                <p className="text-gray-600">R, Python (NumPy, Pandas, scikit-learn), SQL, SAS, Machine Learning</p>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-medium">EHR & Databases</h3>
+                                <p className="text-gray-600">Cerner, Epic, OpenMRS, IROC, REDCap, ARISg7, SCEPTRE 2.6.21</p>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-medium">Visualization & Tools</h3>
+                                <p className="text-gray-600">Tableau, PowerBI, JIRA, Confluence, MS Office, Thunderclient, Google Colab</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Experience Section */}
+                    <section className="max-w-4xl mx-auto py-8 px-4">
+                        <h2 className="text-3xl font-semibold mb-4">Professional Experience</h2>
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="text-xl font-medium">Health Informatics Intern, Michigan Health Information Network (MiHIN)</h3>
+                                <p className="text-gray-600">Remote | Aug 2024 - Present</p>
+                                <ul className="list-disc ml-6 text-gray-600">
+                                    <li>Resolved healthcare data interoperability issues using HL7, FHIR, and SmileCDR.</li>
+                                    <li>Developed automated test protocols for CCD validation.</li>
+                                    <li>Created data mapping documentation aligning HL7 v2 and FHIR standards.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-medium">Research Assistant, Riley Children's Health</h3>
+                                <p className="text-gray-600">Indianapolis, IN | Jan 2023 - Present</p>
+                                <ul className="list-disc ml-6 text-gray-600">
+                                    <li>Managed kidney transplant transition study with REDCap and Cerner.</li>
+                                    <li>Coordinated data migration to IROC database.</li>
+                                    <li>Implemented electronic consent procedures.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-medium">Pharmacovigilance Operations Specialist, IQVIA India</h3>
+                                <p className="text-gray-600">Bangalore, India | Feb 2019 - Jul 2023</p>
+                                <ul className="list-disc ml-6 text-gray-600">
+                                    <li>Processed adverse event data using MedDRA and WHO DRUG dictionaries.</li>
+                                    <li>Streamlined documentation, reducing reporting time.</li>
+                                    <li>Achieved 100% regulatory compliance.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Projects Section */}
+                    <section className="max-w-4xl mx-auto py-8 px-4 bg-white">
+                        <h2 className="text-3xl font-semibold mb-4">Research Projects</h2>
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="text-xl font-medium">Healthcare Interoperability (2024)</h3>
+                                <p className="text-gray-600">Technologies: HL7, FHIR, C-CDA, REST APIs</p>
+                                <p>Developed C-CDA documents and XSLT transformations for data exchange between OpenMRS and OpenELIS. Demonstrated bidirectional interoperability using REST APIs. <a href="https://github.com/your-username/savvy-health-squad" target="_blank" className="text-blue-600 hover:underline">GitHub Repository</a></p>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-medium">Personalizing Exercise Recommendations (2023-2024)</h3>
+                                <p className="text-gray-600">Technologies: Python, TensorFlow, scikit-learn</p>
+                                <p>Built a recommendation system using contextual bandit algorithms. Presented at HealthRecSys'24, Bari, Italy.</p>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-medium">Cognitive Functioning Analysis (2023-2024)</h3>
+                                <p className="text-gray-600">Technologies: R, SAS, Statistical Modeling</p>
+                                <p>Analyzed MIDUS 3 data to study physical, psychological, and social impacts on cognition.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Education Section */}
+                    <section className="max-w-4xl mx-auto py-8 px-4">
+                        <h2 className="text-3xl font-semibold mb-4">Education</h2>
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="text-xl font-medium">Master of Science in Health Informatics</h3>
+                                <p className="text-gray-600">Indiana University, Indianapolis, IN | May 2025</p>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-medium">PharmD</h3>
+                                <p className="text-gray-600">Sri Padmavati School of Pharmacy, Tirupati, India | Feb 2019</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Contact Section */}
+                    <section className="max-w-4xl mx-auto py-8 px-4 bg-white">
+                        <h2 className="text-3xl font-semibold mb-4">Contact</h2>
+                        <p className="text-lg">Feel free to reach out for collaboration or opportunities:</p>
+                        <ul className="list-disc ml-6 text-gray-600">
+                            <li>Email: <a href="mailto:deepupemmasani@gmail.com" className="text-blue-600 hover:underline">deepupemmasani@gmail.com</a></li>
+                            <li>Phone: (317) 507-1142</li>
+                            <li>LinkedIn: <a href="https://linkedin.com/in/deepishka-pemmasani" target="_blank" className="text-blue-600 hover:underline">linkedin.com/in/deepishka-pemmasani</a></li>
+                        </ul>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="bg-blue-800 text-white text-center py-4">
+                        <p>&copy; 2025 Deepishka Pemmasani. All rights reserved.</p>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

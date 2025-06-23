@@ -386,24 +386,24 @@
             const projects = [
                 {
                     title: "Healthcare Interoperability Platform",
-                    description: "Developed a robust system for bidirectional data exchange between OpenMRS and OpenELIS, adhering to HL7 and FHIR standards.",
+                    description: "Developed a system for bidirectional data exchange between OpenMRS and OpenELIS using HL7 and FHIR standards.",
                     technologies: ["HL7", "FHIR", "C-CDA", "REST APIs", "XSLT", "OpenMRS", "OpenELIS"],
                     achievements: [
                         "Created well-formed C-CDA documents for patient data",
                         "Implemented XSLT transformations for JSON outputs",
                         "Demonstrated real-time data exchange via REST APIs",
-                        "Validated interoperability with clinical terminologies (LOINC, SNOMED CT)"
+                        "Validated interoperability with LOINC and SNOMED CT"
                     ],
-                    github: "https://github.com/DeepishkaPemmasani/savvy-health-squad",
+                    github: "https://github.com/DeepishkaPemmasani/Health-Information-Standards-Terminology-Project",
                     status: "Production Ready",
                     impact: "High"
                 },
                 {
                     title: "Personalized Exercise Recommendation System",
-                    description: "Built an AI-powered system to recommend personalized exercises using contextual bandit algorithms and reinforcement learning.",
+                    description: "Built an AI-powered system to recommend personalized exercises using contextual bandit algorithms.",
                     technologies: ["Python", "TensorFlow", "scikit-learn", "Reinforcement Learning"],
                     achievements: [
-                        "Developed contextual bandit algorithms with clinical guideline-based rewards",
+                        "Developed contextual bandit algorithms with clinical rewards",
                         "Achieved 25% improvement in exercise adherence",
                         "Published at HealthRecSys'24, Bari, Italy",
                         "Integrated clinical trial data for evidence-based recommendations"
@@ -414,12 +414,12 @@
                 },
                 {
                     title: "Cognitive Functioning Analysis (MIDUS 3)",
-                    description: "Analyzed MIDUS 3 biomarker data to study physical, psychological, and social impacts on cognitive health.",
+                    description: "Analyzed MIDUS 3 data to study physical, psychological, and social impacts on cognitive health.",
                     technologies: ["R", "SAS", "Statistical Modeling", "Path Analysis"],
                     achievements: [
-                        "Analyzed 3,000+ participant dataset with advanced statistical models",
+                        "Analyzed 3,000+ participant dataset with statistical models",
                         "Applied health belief model and self-determination theory",
-                        "Identified key predictors of cognitive functioning",
+                        "Identified key cognitive functioning predictors",
                         "Developed interactive dashboards for clinical insights"
                     ],
                     github: "https://github.com/DeepishkaPemmasani/MIDUS-Project",
@@ -428,15 +428,15 @@
                 },
                 {
                     title: "Datathon Network Impact Analysis",
-                    description: "Evaluated scholarly growth and diversity metrics for datathon participants compared to conference attendees.",
+                    description: "Evaluated scholarly growth and diversity metrics for datathon participants (2017-2019).",
                     technologies: ["R", "Network Analysis", "Data Visualization"],
                     achievements: [
                         "Compared metrics across gender, education, and income diversity",
                         "Analyzed data from 2017-2019 datathons",
                         "Created visualizations for stakeholder presentations",
-                        "Identified key diversity drivers in scholarly networks"
+                        "Identified diversity drivers in scholarly networks"
                     ],
-                    github: "https://github.com/DeepishkaPemmasani/Datathon-Analysis",
+                    github: "https://github.com/DeepishkaPemmasani/Datathon-Network-Impact",
                     status: "Research Complete",
                     impact: "Medium"
                 },
@@ -450,13 +450,13 @@
                         "Developed survival models for outcome prediction",
                         "Supported clinical policy recommendations"
                     ],
-                    github: "https://github.com/DeepishkaPemmasani/LIFE-Trial",
+                    github: "https://github.com/DeepishkaPemmasani/Cardiovascular-Disease-Risk-Analysis",
                     status: "Published Research",
                     impact: "High"
                 },
                 {
                     title: "Kidney Transplant Transition Study",
-                    description: "Managed data collection and analysis for adolescent kidney transplant readiness and adherence.",
+                    description: "Analyzed adolescent kidney transplant readiness and medication adherence outcomes.",
                     technologies: ["REDCap", "SQL", "Tableau", "Clinical Data Management"],
                     achievements: [
                         "Designed secure REDCap surveys with logic/validation rules",
@@ -464,9 +464,23 @@
                         "Developed Tableau dashboards for clinical reporting",
                         "Supported IROC quality improvement initiatives"
                     ],
-                    github: "https://github.com/DeepishkaPemmasani/Kidney-Transplant-Study",
+                    github: "https://github.com/DeepishkaPemmasani/Kidney-Transplant-Patient-Transition-Analysis",
                     status: "Ongoing",
                     impact: "High"
+                },
+                {
+                    title: "Obesity Definition in Kidney Transplant Clinic",
+                    description: "Compared BMI and % body fat for obesity classification in kidney transplant patients.",
+                    technologies: ["Python", "R", "Statistical Analysis"],
+                    achievements: [
+                        "Identified BMI overestimation in obesity classification",
+                        "Analyzed gender-specific trends in body composition",
+                        "Supported clinical guideline updates",
+                        "Presented findings to transplant team"
+                    ],
+                    github: "https://github.com/DeepishkaPemmasani/Obesity-Definition-in-Kidney-Transplant-Transition-Clinic",
+                    status: "Research Complete",
+                    impact: "Medium"
                 }
             ];
 
@@ -488,8 +502,8 @@
                                             <div className="flex-1">
                                                 <div className="flex items-center mb-2">
                                                     <h3 className="text-2xl font-bold text-gray-900">{project.title}</h3>
-                                                    <span className={`ml-4 px-3 py-1 rounded-full text-xs font-medium ${
-                                                        project.impact === 'High' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+                                                    <span className={`ml-4 px-3 py-1 rounded-full text-sm font-medium ${
+                                                        project.impact === 'High' ? 'bg-green-100 text-green-1' : 'bg-blue-100 text-blue-800'
                                                     }`}>
                                                         {project.impact} Impact
                                                     </span>
@@ -664,7 +678,7 @@
             );
         };
 
-        const Contact = () => {
+        const ContactSection = () => {
             return (
                 <section id="contact" className="py-20 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -703,7 +717,7 @@
                             <div className="bg-gray-50 p-8 rounded-2xl card-hover">
                                 <h3 className="text-xl font-semibold mb-4">Certifications & Memberships</h3>
                                 <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                                    <li>Bio Medical Researcher, CTTI Program - Good Clinical Practice</li>
+                                    <li>Bio Medical Researcher, CITI Program - Good Clinical Practice</li>
                                     <li>Uppsala Monitoring Centre: Statistical Reasoning in Pharmacovigilance</li>
                                     <li>Uppsala Monitoring Centre: Signal Detection and Causality Assessment</li>
                                     <li>Member, HL7 International Working Group</li>
@@ -728,7 +742,7 @@
                     <Projects />
                     <Publications />
                     <Conferences />
-                    <Contact />
+                    <ContactSection />
                     <footer className="bg-gray-900 text-white text-center py-6">
                         <p>© 2025 Deepishka Pemmasani. All rights reserved.</p>
                     </footer>
